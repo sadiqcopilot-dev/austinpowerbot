@@ -1,0 +1,76 @@
+<UserControl x:Class="AustinXPowerBot.Desktop.Pages.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="18">
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+            <TextBlock Text="Settings" FontSize="26" FontWeight="SemiBold" />
+            <Border Grid.Row="1" Style="{StaticResource Card}" Margin="0,16,0,0">
+                <StackPanel Margin="12">
+                    <TextBlock Text="General" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8" />
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4,0,0">
+                        <CheckBox IsChecked="{Binding AutoUpdateEnabled, Mode=TwoWay}" Content="Enable Auto-update" ToolTip="When enabled, the app checks the update manifest for new versions."/>
+                        <TextBox Text="{Binding UpdateManifestUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="420" Margin="12,0,0,0" ToolTip="Update manifest URL (optional)"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,8,0,0">
+                        <CheckBox IsChecked="{Binding StartOnLogin, Mode=TwoWay}" Content="Start on login" ToolTip="Launch app automatically when you sign in to Windows."/>
+                        <ComboBox SelectedValue="{Binding Theme, Mode=TwoWay}" Width="160" Margin="12,0,0,0" ToolTip="Choose application theme.">
+                            <ComboBoxItem Content="Auto"/>
+                            <ComboBoxItem Content="Light"/>
+                            <ComboBoxItem Content="Dark"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <TextBlock Text="Claim Bonus" FontSize="16" FontWeight="SemiBold" Margin="0,12,0,4" />
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <ComboBox SelectedValue="{Binding ClaimGenerationMode, Mode=TwoWay}" Width="180" ToolTip="OneTime = single code per installation; Temporary = expires after minutes">
+                            <ComboBoxItem Content="OneTime"/>
+                            <ComboBoxItem Content="Temporary"/>
+                        </ComboBox>
+                        <TextBlock Text="Expiration (minutes):" VerticalAlignment="Center" Margin="12,0,4,0"/>
+                        <TextBox Text="{Binding ClaimExpirationMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" ToolTip="Number of minutes a temporary code remains valid"/>
+                    </StackPanel>
+
+                    <TextBlock Text="Diagnostics" FontSize="16" FontWeight="SemiBold" Margin="0,12,0,4" />
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <TextBlock Text="Log level:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ComboBox SelectedValue="{Binding LogLevel, Mode=TwoWay}" Width="120">
+                            <ComboBoxItem Content="Error"/>
+                            <ComboBoxItem Content="Info"/>
+                            <ComboBoxItem Content="Debug"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <TextBlock Text="Functions" FontSize="16" FontWeight="SemiBold" Margin="0,12,0,4" />
+                    <WrapPanel Margin="0,4,0,0">
+                        <Button Margin="0,0,10,10" Padding="10,8" Click="ClearClaimLock_Click" ToolTip="Remove claim lock so this installation can claim again">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE74D;" Margin="0,0,8,0"/>
+                                <TextBlock Text="Clear Claim Lock"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Margin="0,0,10,10" Padding="10,8" Click="ResetGeneratedCode_Click" ToolTip="Remove any previously generated codes">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72C;" Margin="0,0,8,0"/>
+                                <TextBlock Text="Reset Generated Code"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Margin="0,0,10,10" Padding="10,8" Click="ExportSettings_Click" ToolTip="Export local settings and logs to a zip file">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A5;" Margin="0,0,8,0"/>
+                                <TextBlock Text="Export Settings"/>
+                            </StackPanel>
+                        </Button>
+                    </WrapPanel>
+
+                    <TextBlock Text="Notes:" Style="{StaticResource MutedText}" Margin="0,12,0,4" />
+                    <TextBlock Text="- Clear Claim Lock: allows generating/claiming again on this machine.\n- Reset Generated Code: removes app and Telegram generated codes.\n- Export Settings: creates a zip of local app data." TextWrapping="Wrap" Style="{StaticResource MutedText}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

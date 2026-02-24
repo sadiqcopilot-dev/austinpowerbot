@@ -1,0 +1,79 @@
+<UserControl x:Class="AustinXPowerBot.Desktop.Pages.DeviceLicenseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="18">
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+            <TextBlock Text="Device &amp; License" FontSize="26" FontWeight="SemiBold" />
+            <Border Grid.Row="1" Style="{StaticResource Card}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Bind this device and activate local license state." Style="{StaticResource MutedText}"/>
+
+                    <TextBlock Text="License Key" Style="{StaticResource MutedText}" Margin="0,14,0,4"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" Text="{Binding LicenseKeyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="10,8"
+                                 IsEnabled="{Binding CanUseNonActivateControls}"/>
+                        <Button Grid.Column="1"
+                                Content="Generate License"
+                                Background="{StaticResource PanelBgBrush}"
+                                BorderThickness="0"
+                                Padding="14,8"
+                                Margin="10,0,0,0"
+                                IsEnabled="{Binding CanGenerateLicense}"
+                                Command="{Binding GenerateLicenseCommand}"/>
+                    </Grid>
+
+                    <TextBlock Text="Telegram ID" Style="{StaticResource MutedText}" Margin="0,12,0,4"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" Text="{Binding TelegramIdText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="10,8"
+                                 IsEnabled="{Binding CanUseNonActivateControls}"/>
+                        <Button Grid.Column="1"
+                                Content="Connect Telegram"
+                                Background="{StaticResource PanelBgBrush}"
+                                BorderThickness="0"
+                                Padding="14,8"
+                                Margin="10,0,0,0"
+                                IsEnabled="{Binding CanConnectTelegram}"
+                                Command="{Binding ConnectTelegramCommand}"/>
+                    </Grid>
+
+                        <TextBlock Text="Client Bot Username" Style="{StaticResource MutedText}" Margin="0,12,0,4"/>
+                        <TextBox Text="{Binding ClientBotUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="10,8"
+                                 IsEnabled="{Binding CanUseNonActivateControls}"/>
+
+                        <TextBlock Text="Activation Message (send to client bot)" Style="{StaticResource MutedText}" Margin="0,12,0,4"/>
+                        <TextBox Text="{Binding ActivationMessage, Mode=OneWay}" IsReadOnly="True" Padding="10,8" Height="100" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+
+                    <WrapPanel Margin="0,14,0,0">
+                        <Button Content="Open Client Bot" Background="{StaticResource PanelBgBrush}" BorderThickness="0" Padding="14,10" Margin="0,0,10,10"
+                            IsEnabled="{Binding CanUseNonActivateControls}"
+                            Command="{Binding OpenAdminBotCommand}"/>
+                        <Button Content="Copy Activation Msg" Background="{StaticResource PanelBgBrush}" BorderThickness="0" Padding="14,10" Margin="0,0,10,10"
+                            IsEnabled="{Binding CanUseNonActivateControls}"
+                            Command="{Binding CopyActivationMessageCommand}"/>
+                        <Button Content="Activate License" Style="{StaticResource PrimaryButton}" Margin="0,0,10,10"
+                                Command="{Binding ActivateLicenseCommand}"/>
+                        <Button Content="Set Pending" Style="{StaticResource DangerButton}" Margin="0,0,10,10"
+                                IsEnabled="{Binding CanUseNonActivateControls}"
+                                Command="{Binding SetPendingCommand}"/>
+                        <Button Content="Reload" Background="{StaticResource PanelBgBrush}" BorderThickness="0" Padding="14,10" Margin="0,0,0,10"
+                                IsEnabled="{Binding CanUseNonActivateControls}"
+                                Command="{Binding ReloadStateCommand}"/>
+                    </WrapPanel>
+
+                    <TextBlock Text="{Binding StatusText}" Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

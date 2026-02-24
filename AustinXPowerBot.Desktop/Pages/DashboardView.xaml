@@ -1,0 +1,111 @@
+<UserControl x:Class="AustinXPowerBot.Desktop.Pages.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Dashboard" FontSize="26" FontWeight="SemiBold" />
+
+            <!-- Status cards -->
+            <Grid Grid.Row="1" Margin="0,16,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,12,12">
+                    <StackPanel>
+                        <TextBlock Text="Broker Status" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding AppState.BrokerStatusText}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource Card}" Margin="0,0,12,12">
+                    <StackPanel>
+                        <TextBlock Text="License Status" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding AppState.LicenseBadgeText}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource Card}" Margin="0,0,12,12">
+                    <StackPanel>
+                        <TextBlock Text="Device Info" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding AppState.DeviceInfo.DeviceName, StringFormat=Device Name: {0}}" Margin="0,8,0,0"/>
+                        <TextBlock Text="{Binding AppState.DeviceInfo.DeviceModel, StringFormat=Device Model: {0}}" Margin="0,8,0,0"/>
+                        <TextBlock Text="{Binding AppState.DeviceInfo.OsVersion, StringFormat=OS: {0}}" Margin="0,6,0,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <TextBlock Text="{Binding AppState.DeviceInfo.DeviceDisplayId, StringFormat=Device ID: {0}}" />
+                            <Button Content="Copy" Margin="10,0,0,0" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                                    Command="{Binding CopyDeviceIdCommand}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="3" Style="{StaticResource Card}" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="Telegram Status" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding AppState.TelegramStatusText}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Account summary -->
+            <Border Grid.Row="2" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Account Summary" FontWeight="SemiBold"/>
+                    <WrapPanel Margin="0,12,0,0" ItemWidth="210">
+                        <Border Background="{StaticResource PanelBg2Brush}" CornerRadius="10" Padding="12" Margin="0,0,12,12">
+                            <StackPanel>
+                                <TextBlock Text="Live Balance" Style="{StaticResource MutedText}"/>
+                                <TextBlock Text="{Binding AppState.LiveBalanceText}" FontSize="18" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{StaticResource PanelBg2Brush}" CornerRadius="10" Padding="12" Margin="0,0,12,12">
+                            <StackPanel>
+                                    <TextBlock Text="Demo Balance" Style="{StaticResource MutedText}"/>
+                                    <TextBlock Text="{Binding AppState.DemoBalanceText}" FontSize="18" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{StaticResource PanelBg2Brush}" CornerRadius="10" Padding="12" Margin="0,0,12,12">
+                            <StackPanel>
+                                <TextBlock Text="Total Trades" Style="{StaticResource MutedText}"/>
+                                <TextBlock Text="{Binding AppState.ClosedTradesText}" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding AppState.WinLossText}" Style="{StaticResource MutedText}" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{StaticResource PanelBg2Brush}" CornerRadius="10" Padding="12" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Win Rate" Style="{StaticResource MutedText}"/>
+                                <TextBlock Text="{Binding AppState.WinRateText}" FontSize="18" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{StaticResource PanelBg2Brush}" CornerRadius="10" Padding="12" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Demo Win Rate" Style="{StaticResource MutedText}"/>
+                                <TextBlock Text="{Binding AppState.DemoWinRateText}" FontSize="18" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding AppState.OpenTradesText, StringFormat=Open: {0}}" Style="{StaticResource MutedText}" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Recent trades placeholder -->
+            <Border Grid.Row="3" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Recent Trades" FontWeight="SemiBold"/>
+                    <TextBlock Text="(table placeholder)" Style="{StaticResource MutedText}" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

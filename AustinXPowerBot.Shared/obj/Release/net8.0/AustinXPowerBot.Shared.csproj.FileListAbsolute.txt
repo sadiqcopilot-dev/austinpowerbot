@@ -1,0 +1,11 @@
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\bin\Release\net8.0\AustinXPowerBot.Shared.deps.json
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\bin\Release\net8.0\AustinXPowerBot.Shared.dll
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\bin\Release\net8.0\AustinXPowerBot.Shared.pdb
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\AustinXPowerBot.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\AustinXPowerBot.Shared.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\AustinXPowerBot.Shared.AssemblyInfo.cs
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\AustinXPowerBot.Shared.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\AustinXPowerBot.Shared.dll
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\refint\AustinXPowerBot.Shared.dll
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\AustinXPowerBot.Shared.pdb
+C:\Users\USER\Desktop\AustinXPowerBot_Source\AustinXPowerBot.Shared\obj\Release\net8.0\ref\AustinXPowerBot.Shared.dll

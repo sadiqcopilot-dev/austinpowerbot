@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: austinxpowerbot
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: .
+      dockerfile: AustinXPowerBot.Api/Dockerfile
+    environment:
+      - ConnectionStrings__Default=Host=db;Port=5432;Database=austinxpowerbot;Username=postgres;Password=postgres
+      - Jwt__Key=dev-change-me
+      - Jwt__Issuer=AustinXPowerBot.Api
+      - Jwt__Audience=AustinXPowerBot.Clients
+    ports:
+      - "5099:80"
+    depends_on:
+      - db
+
+  telegram:
+    build:
+      context: .
+      dockerfile: AustinXPowerBot.TelegramBot/Dockerfile
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - API_BASE_URL=http://api:80/
+    depends_on:
+      - api
+
+volumes:
+  db-data:

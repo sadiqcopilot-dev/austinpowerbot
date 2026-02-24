@@ -1,0 +1,59 @@
+<UserControl x:Class="AustinXPowerBot.Desktop.Shell.Sidebar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border Background="{StaticResource PanelBg2Brush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="10">
+
+                <Button Content="☰" HorizontalAlignment="Left" Width="44" Height="38"
+                        Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        Command="{Binding ToggleSidebarCommand}" Margin="0,0,0,12"/>
+
+                <Button Content="🏠  Dashboard" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="Dashboard" />
+                <Button Content="🤖  Auto Trade" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="AutoTrade" />
+                <Button Content="📡  Signals" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="Signals" />
+                <Button Content="✈️  Telegram Control" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="Telegram" />
+                <Button Content="🛡  Risk Manager" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="Risk" />
+                <Button Content="📜  Trade History" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="History" />
+                <Button Content="🎁  Claim Bonus" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="ClaimBonus" />
+                <Button Content="🔐  Device &amp; License" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        Command="{Binding NavigateCommand}" CommandParameter="DeviceLicense" />
+                <Button Content="⚙  Settings" Margin="0,0,0,8" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="Settings" />
+                <Button Content="❓  Help &amp; Support" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                        IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding NavigateCommand}" CommandParameter="Help" />
+
+            </StackPanel>
+
+            <!-- Bottom user profile -->
+            <Border Grid.Row="1" Margin="10" Background="{StaticResource PanelBgBrush}" CornerRadius="10" Padding="12">
+                <StackPanel>
+                    <TextBlock Text="User" FontWeight="SemiBold"/>
+                    <TextBlock Text="Austin Pro" />
+                    <TextBlock Text="Online" Foreground="{StaticResource SuccessBrush}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

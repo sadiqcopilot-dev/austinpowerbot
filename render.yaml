@@ -1,0 +1,27 @@
+# Render service manifest - template. Replace secret placeholders in Render dashboard.
+
+services:
+  - type: web
+    name: AustinXPowerBot-API
+    env: docker
+    dockerfilePath: AustinXPowerBot.Api/Dockerfile
+    plan: starter
+    instanceCount: 1
+    envVars:
+      - key: ConnectionStrings__Default
+        value: $AUSTIN_DB_CONNECTION
+      - key: Jwt__Key
+        value: $JWT_KEY
+      - key: Jwt__Issuer
+        value: AustinXPowerBot.Api
+      - key: Jwt__Audience
+        value: AustinXPowerBot.Clients
+
+  # Telegram webhook handled by the API. If you still want a worker to run helper
+  # tasks, create it manually in the Render dashboard using
+  # AustinXPowerBot.TelegramBot/Dockerfile — it's optional for webhook-only flow.
+
+databases:
+  - name: austinxpowerbot-db
+    engine: postgres
+    plan: starter

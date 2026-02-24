@@ -1,0 +1,36 @@
+<Window x:Class="AustinXPowerBot.Desktop.Shell.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:AustinXPowerBot.Desktop.Shell"
+        xmlns:vm="clr-namespace:AustinXPowerBot.Desktop.ViewModels"
+        Title="Austin X PowerBot" Height="780" Width="1280"
+        Background="{StaticResource AppBgBrush}"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:ShellViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Bar -->
+        <shell:TopBar Grid.Row="0" />
+
+        <!-- Body -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding SidebarWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="340" /> <!-- Right panel fixed -->
+            </Grid.ColumnDefinitions>
+
+            <shell:Sidebar Grid.Column="0" />
+            <ContentControl Grid.Column="1" Content="{Binding CurrentPage}" />
+            <shell:RightPanel Grid.Column="2" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,43 @@
+<UserControl x:Class="AustinXPowerBot.Desktop.Shell.TopBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border Background="{StaticResource PanelBg2Brush}" Padding="16,10">
+        <DockPanel LastChildFill="True">
+
+            <!-- Left: Logo + name -->
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,18,0">
+                <Ellipse Width="28" Height="28" Fill="{StaticResource AccentBrush}" Opacity="0.85"/>
+                <TextBlock Text="Austin X PowerBot" FontSize="16" FontWeight="SemiBold" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Center: badges -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Background="{StaticResource PanelBgBrush}" CornerRadius="10" Padding="10,6" Margin="0,0,10,0">
+                    <TextBlock Text="{Binding AppState.BrokerStatusText, StringFormat=Broker: {0}}" />
+                </Border>
+                <Border Background="{StaticResource PanelBgBrush}" CornerRadius="10" Padding="10,6" Margin="0,0,10,0">
+                    <TextBlock Text="{Binding AppState.LicenseBadgeText, StringFormat=License: {0}}" />
+                </Border>
+                <Border Background="{StaticResource PanelBgBrush}" CornerRadius="10" Padding="10,6">
+                    <TextBlock Text="{Binding AppState.DeviceLockText}" />
+                </Border>
+            </StackPanel>
+
+            <!-- Right: icons -->
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Content="{Binding AppState.UnreadNotificationCount, StringFormat=🔔 {0}}"
+                        Width="52" Height="32" Margin="0,0,8,0"
+                        Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                    IsEnabled="{Binding IsAppUnlocked}"
+                        Command="{Binding OpenNotificationsCommand}" />
+                <Button Content="⚙" Width="36" Height="32" Margin="0,0,8,0" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                    IsEnabled="{Binding IsAppUnlocked}" />
+                <Button Content="—" Width="36" Height="32" Margin="0,0,8,0" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                    IsEnabled="{Binding IsAppUnlocked}" />
+                <Button Content="✕" Width="36" Height="32" Background="{StaticResource PanelBgBrush}" BorderThickness="0"
+                    IsEnabled="{Binding IsAppUnlocked}" />
+            </StackPanel>
+
+        </DockPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,140 @@
+<UserControl x:Class="AustinXPowerBot.Desktop.Pages.AutoTradeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <TextBlock Text="Auto Trade" FontSize="26" FontWeight="SemiBold" />
+                <TextBlock Text="Selenium Engine (structure only)" Style="{StaticResource MutedText}" Margin="0,4,0,0"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Margin="0,16,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left column -->
+                <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="Browser Session" FontWeight="SemiBold"/>
+                            <TextBlock Text="Broker selection, browser profile, start/attach/close." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                            <WrapPanel Margin="0,12,0,0">
+                                <Button Content="Start Browser" Style="{StaticResource PrimaryButton}" Margin="0,0,10,10"
+                                    Command="{Binding StartBrowserCommand}"/>
+                                <Button Content="Attach Session" Background="{StaticResource PanelBgBrush}" BorderThickness="0" Padding="14,10" Margin="0,0,10,10"
+                                    Command="{Binding AttachSessionCommand}"/>
+                                <Button Content="Close Browser" Style="{StaticResource DangerButton}" Margin="0,0,0,10"
+                                    Command="{Binding CloseBrowserCommand}"/>
+                            </WrapPanel>
+                                <TextBlock Text="{Binding EngineStatus, StringFormat=Status: {0}}" Style="{StaticResource MutedText}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="Trade Controls" FontWeight="SemiBold"/>
+                            <TextBlock Text="Mode, Pair, Stake, Expiry, Martingale." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+
+                            <Grid Margin="0,12,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Stake Amount" Style="{StaticResource MutedText}" Margin="0,0,10,4"/>
+                                <TextBox Grid.Row="1" Grid.Column="0" Margin="0,0,10,10" Padding="10,8"
+                                         Text="{Binding StakeAmountText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Martingale" Style="{StaticResource MutedText}" Margin="0,0,0,4"/>
+                                <CheckBox x:Name="MartingaleEnabledCheck" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
+                                          Content="Enable Martingale"
+                                          Foreground="{StaticResource TextPrimaryBrush}"
+                                          VerticalAlignment="Center"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Stop Loss" Style="{StaticResource MutedText}" Margin="0,0,10,4"/>
+                                <TextBox Grid.Row="3" Grid.Column="0" Margin="0,0,10,0" Padding="10,8"
+                                         Text="{Binding StopLossText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Take Profit" Style="{StaticResource MutedText}" Margin="0,0,0,4"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" Padding="10,8"
+                                         Text="{Binding TakeProfitText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Expiration Time" Style="{StaticResource MutedText}" Margin="0,0,10,4"/>
+                                <TextBox Grid.Row="5" Grid.Column="0" Margin="0,0,10,0" Padding="10,8"
+                                         Text="{Binding ExpirationTimeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Grid.Row="4" Grid.Column="1" Text="Martingale Percentage" Style="{StaticResource MutedText}" Margin="0,0,0,4"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,0" Text="e.g. 25" Padding="10,8">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=MartingaleEnabledCheck, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Right column -->
+                <StackPanel Grid.Column="1">
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="Risk &amp; Money" FontWeight="SemiBold"/>
+                            <TextBlock Text="Max daily loss, max losses, cooldown, max trades/day." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="Strategy" FontWeight="SemiBold"/>
+                            <TextBlock Text="Follow/reverse, strength filters, confirm-before-trade." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                            <CheckBox Content="Enable AI Trade"
+                                      Margin="0,12,0,0"
+                                      Foreground="{StaticResource TextPrimaryBrush}"
+                                      IsChecked="{Binding AiTradeEnabled, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="2" Style="{StaticResource Card}">
+                <DockPanel>
+                    <TextBlock Text="Execution Controls" FontWeight="SemiBold" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                        <Button Content="{Binding AiTradeButtonText}" Background="{StaticResource PanelBgBrush}" BorderThickness="0" Padding="14,10" Margin="0,0,10,0"
+                            Command="{Binding ToggleAiTradeCommand}"/>
+                        <Button Content="Start AutoTrade" Style="{StaticResource PrimaryButton}" Margin="0,0,10,0"
+                            Command="{Binding StartAutoTradeCommand}"/>
+                        <Button Content="Stop All" Style="{StaticResource DangerButton}" Margin="0,0,10,0"
+                            Command="{Binding StopAllCommand}"/>
+                        <Button Content="Pause" Background="{StaticResource PanelBgBrush}" BorderThickness="0" Padding="14,10"
+                            Command="{Binding PauseCommand}"/>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>
